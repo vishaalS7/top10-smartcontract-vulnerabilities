@@ -117,6 +117,16 @@ Logs:
 
 ---
 
+## 🔚 Final Thoughts
+
+Randomness is a powerful tool in smart contract development—but only when implemented correctly. As we've seen, relying on block attributes like `block.timestamp` or `blockhash` leads to predictable outcomes that attackers can exploit.
+
+If you're building anything that relies on randomness—lotteries, games, NFT drops—always use secure and verifiable approaches like [Chainlink VRF](https://docs.chain.link/vrf) to ensure fairness across your application.
+
+Smart contract security is about thinking one step ahead. Audit your code, simulate attacks, and never stop learning.
+
+---
+
 ## 📁 Folder Structure
 
 ```
@@ -159,3 +169,7 @@ Smart Contract Auditor & Web3 Security Researcher
 ## 📌 Tags
 
 `#Solidity` `#SmartContractSecurity` `#Randomness` `#BlockchainSecurity` `#Foundry` `#Top10Bugs`
+
+
+## 🙌 Thanks for Reading!
+🚀 Until next time, happy hacking!
