@@ -156,13 +156,13 @@ Smart Contract Auditor & Web3 Security Researcher
 
 - 🔗 [GitHub: @vishaalS7](https://github.com/vishaalS7)  
 - 🧵 [X/Twitter: @0xvishh](https://x.com/0xvishh)  
-- 📘 [Blog (Medium)](https://medium.com/@your-medium-handle) *(replace this)*
+- 📘 [Blog (Medium)](https://medium.com/@0xvishh)
 
 ---
 
 ## 📝 Blog Post
 
-📖 [Insecure Randomness — Explained with Code & Attack Demo](https://medium.com/@your-medium-handle/insecure-randomness-smart-contract-bug-top10) *(Replace with actual blog link)*
+📖 [Insecure Randomness — Explained with Code & Attack Demo](https://medium.com/@0xvishh/predictable-chaos-the-exploitable-world-of-weak-randomness-cc928c02ca25)
 
 ---
 
