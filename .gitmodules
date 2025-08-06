@@ -1,0 +1,3 @@
+[submodule "02-Arithmetic-overflow-underflow/lib/forge-std"]
+	path = 02-Arithmetic-overflow-underflow/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
