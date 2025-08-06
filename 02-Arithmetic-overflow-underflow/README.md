@@ -120,3 +120,120 @@ To observe these behaviors:
 - Use **Solidity >= 0.8.0** to see how the same operations revert the transaction by default.
 
 We'll explore both behaviors hands-on using PoCs and Foundry in the next sections.
+
+# 🔄 3. The Evolution: Pre-0.8.0 vs Post-0.8.0
+
+Solidity has come a long way in how it handles arithmetic. Prior to version 0.8.0, developers had to manually guard against integer overflows and underflows. But with the release of Solidity 0.8.0, the language introduced **built-in overflow/underflow checks**, shifting the responsibility from the developer to the compiler.
+
+---
+
+## 🕰️ Pre-0.8.0: No Safety by Default
+
+In versions prior to Solidity 0.8.0, **arithmetic was unchecked**. The compiler would translate operations like `+`, `-`, `*` directly into EVM opcodes (`ADD`, `SUB`, `MUL`) without checking if the result was valid in the context of the data type.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.6;
+
+contract LegacyMath {
+    uint8 public value = 255;
+
+    function overflow() public {
+        value += 1; // wraps around to 0 (no error)
+    }
+}
+```
+
+---
+
+## 🛡️ The Role of SafeMath (Before 0.8.0)
+
+To mitigate this, libraries like **OpenZeppelin’s SafeMath** became essential.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.6;
+
+import "@openzeppelin/contracts/math/SafeMath.sol";
+
+contract SafeAddition {
+    using SafeMath for uint256;
+    uint256 public total;
+
+    function add(uint256 x) public {
+        total = total.add(x); // reverts on overflow
+    }
+}
+```
+
+SafeMath’s implementation:
+```solidity
+function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    require(c >= a, "SafeMath: addition overflow");
+    return c;
+}
+```
+
+---
+
+## 🚧 Post-0.8.0: Built-in Arithmetic Checks
+
+Solidity 0.8.0 introduced **automatic checked arithmetic**.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SafeByDefault {
+    uint8 public value = 255;
+
+    function overflow() public {
+        value += 1; // reverts automatically on overflow
+    }
+}
+```
+
+Unchecked behavior is opt-in:
+
+```solidity
+function unsafe() public {
+    unchecked {
+        value += 1; // wraps silently
+    }
+}
+```
+
+---
+
+## 🧬 Bytecode Difference: Pre vs Post
+
+### Pre-0.8.0:
+- `+` → `ADD`
+- Lightweight, unsafe
+
+### Post-0.8.0:
+- `+` → `ADD` + overflow check (e.g., `GT`, `ISZERO`, `REVERT`)
+
+### Disassembly Tools:
+```bash
+solc LegacyMath.sol --bin
+solc SafeByDefault.sol --bin
+evm disasm bytecode.hex
+```
+
+Pre-0.8.0: `PUSH`, `ADD`, `SSTORE`
+
+Post-0.8.0: `PUSH`, `ADD`, `GT`, `ISZERO`, `JUMPI`, `REVERT`, `SSTORE`
+
+---
+
+## 🔍 Summary
+
+| Feature                         | Pre-0.8.0         | Post-0.8.0                |
+|---------------------------------|-------------------|----------------------------|
+| Arithmetic safety               | ❌ No             | ✅ Yes (by default)        |
+| Overflow/underflow reverts      | ❌ No             | ✅ Yes                     |
+| Need for SafeMath               | ✅ Required       | ❌ Not needed              |
+| Unchecked arithmetic            | Always            | Only inside `unchecked {}`|
+| Bytecode injected checks        | ❌ None           | ✅ Present                 |
