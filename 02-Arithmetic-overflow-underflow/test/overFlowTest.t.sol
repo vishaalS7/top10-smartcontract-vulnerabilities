@@ -1,30 +1,29 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.6;
 
 import "forge-std/Test.sol";
 
 import "../src/vulnerableContract.sol";
-import "../src/overflowAttacker.sol";
 
-contract OverflowTest is Test {
-    VulnerableToken token;
-    OverflowAttacker attacker;
+contract TimeLockTest is Test {
+    TimeLock public timeLock;
+    Attack public attack;
 
     function setUp() public {
-        token = new VulnerableToken();
-        attacker = new OverflowAttacker(address(token));
+        timeLock = new TimeLock();
+        attack = new Attack(timeLock);
+        vm.deal(address(attack), 1 ether); // fund the attack contract
     }
 
-    function testUnderflowAttack() public {
-        // Initially attacker has 0 balance
-        uint256 balanceBefore = token.balances(address(attacker));
-        console.log("Before attack: %s", balanceBefore);
+    function testAttackSuccess() public {
+        uint256 attackerBalanceBefore = address(attack).balance;
 
-        attacker.attack();
+        vm.prank(address(attack));
+        attack.attack{value: 1 ether}();
 
-        uint256 balanceAfter = token.balances(address(attacker));
-        console.log("After attack: %s", balanceAfter);
+        uint256 attackerBalanceAfter = address(attack).balance;
 
-        assertEq(balanceAfter, balanceBefore);
+        // Should have received back the 1 ether
+        assertEq(attackerBalanceAfter, attackerBalanceBefore);
     }
 }
