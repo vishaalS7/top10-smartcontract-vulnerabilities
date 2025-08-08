@@ -1,3 +1,6 @@
 [submodule "02-Arithmetic-overflow-underflow/lib/forge-std"]
 	path = 02-Arithmetic-overflow-underflow/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "03-DenialOfService-DOS/lib/forge-std"]
+	path = 03-DenialOfService-DOS/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
