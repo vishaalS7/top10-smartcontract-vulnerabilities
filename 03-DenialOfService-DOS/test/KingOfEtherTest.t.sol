@@ -2,6 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Test.sol";
+import "../src/King0fEther.sol";
 
 contract KingOfEtherTest is Test {
     KingOfEther public game;
