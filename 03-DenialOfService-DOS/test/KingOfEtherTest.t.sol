@@ -7,7 +7,7 @@ contract KingOfEtherTest is Test {
     KingOfEther public game;
     Attack public attacker;
     address alice = address(0x1);
-    address bob   = address(0x2);
+    address bob = address(0x2);
 
     function setUp() public {
         game = new KingOfEther();
