@@ -4,3 +4,6 @@
 [submodule "03-DenialOfService-DOS/lib/forge-std"]
 	path = 03-DenialOfService-DOS/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "04-AccessControl/lib/forge-std"]
+	path = 04-AccessControl/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
