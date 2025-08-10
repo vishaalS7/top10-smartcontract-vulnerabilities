@@ -1,66 +1,23 @@
-## Foundry
+# 🔐 Access Control in Solidity – A Complete Guide
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository is a companion resource for my blog **"Mastering Access Control in Solidity: The Ultimate Guide for Developers & Security Researchers"** published on Medium.  
 
-Foundry consists of:
+It contains **no source code**, but serves as a placeholder for readers, researchers, and developers who want to explore the concepts discussed in the article.  
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 📖 Blog Link
+Read the full blog here: [Mastering Access Control in Solidity](https://medium.com/@vishhxyz/mastering-access-control-in-solidity-the-ultimate-guide-for-developers-security-413b874eccf2)  
 
-## Documentation
+## 📜 About the Blog
+In this guide, you’ll learn:
+- What access control is in Solidity and why it matters.
+- Real-world case studies of major hacks caused by weak access control.
+- Example vulnerabilities and Proof-of-Concepts (PoCs).
+- Secure implementation patterns using OpenZeppelin.
+- Best practices to keep your contracts safe.
 
-https://book.getfoundry.sh/
+## 🛡️ Purpose
+Access control vulnerabilities are among the most **preventable yet most exploited** issues in Ethereum smart contracts.  
+This blog aims to be a **one-stop resource** for both developers and security researchers.
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+---
+> Written with ❤️ for the Web3 security community.
