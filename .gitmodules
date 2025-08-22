@@ -10,3 +10,6 @@
 [submodule "05-Reentrancy/lib/forge-std"]
 	path = 05-Reentrancy/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "06-FlashLoan-Attack/lib/forge-std"]
+	path = 06-FlashLoan-Attack/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
